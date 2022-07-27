@@ -1,0 +1,2 @@
+// モナレッジのmypageから記事IDとタイトルをTAB区切でクリップボード出力するブックマークレット
+javascript:(async()=>{const links = Array.from(document.querySelectorAll(`a[href^='/article/']`));const ids = links.map(e=>parseInt(e.getAttribute('href').replace(/.*[\/\\]/, '')));const titles = links.map(e=>e.querySelector('div.v-card__title').textContent.trim());await navigator.clipboard.writeText(ids.map((id,i)=>`${id}\t${titles[i]}`).join('\n')).catch(e=>console.error(e))})();
